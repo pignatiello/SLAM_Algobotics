@@ -42,7 +42,7 @@ class featuresDetection: #modificato
         return [(x,y),(x2,y2)]
     
     # general form to slope-intercept
-    def lineForm_G2SI (self, A, B, C):
+    def lineForm_G2SI(self, A, B, C):
         m = -A/B
         b = -C/B
         return m, b
@@ -102,12 +102,13 @@ class featuresDetection: #modificato
                 self.LASERPOINTS.append([coordinates, point[1]])
         self.NP = len(self.LASERPOINTS) - 1
 
-        print("Data processed. LASERPOINTS:", self.LASERPOINTS)
+        
         print("Updated NP:", self.NP)
     # Define a function (linear in our case) to fit the data with.
     def linear_func(self, p, x):
         m, b = p
         return m * x + b
+
     # modificato selfself in self
     def odr_fit(self, laser_points):
         x = np.array([i[0][0] for i in laser_points])
@@ -137,7 +138,7 @@ class featuresDetection: #modificato
         flag = True
         self.NP = max(0, self.NP)
         self.SEED_SEGMENTS = []
-        for i in range(break_point_ind, (self.NP - self. PMIN)):
+        for i in range(break_point_ind, (self.NP - self.PMIN)):
             predicted_points_to_draw = []
             j = i + self.SNUM
             m, c = self.odr_fit(self.LASERPOINTS[i:j])

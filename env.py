@@ -8,6 +8,7 @@ class Buildenvironment:
     
     def __init__(self, MapDimensions):
         pygame.init()
+        
         self.map_path = "map.png"
         self.point_cloud = []
         self.external_map = pygame.image.load(self.map_path)
@@ -48,5 +49,19 @@ class Buildenvironment:
         for point in self.point_cloud:
             self.infomap.set_at((int(point[0]), int(point[1])), (255, 0, 0))
             
+    #01Piano Cartesiano
+    def draw_cartesian_plane(self):
+        cartesian_plane = pygame.Surface((self.mapw, self.maph), pygame.SRCALPHA)
+        line_color = (150, 150, 150)
+        
+        # Disegna le linee orizzontali
+        for y in range(0, self.maph, 20):
+            pygame.draw.line(cartesian_plane, line_color, (0, y), (self.mapw, y), 1)
+        
+        # Disegna le linee verticali
+        for x in range(0, self.mapw, 20):
+            pygame.draw.line(cartesian_plane, line_color, (x, 0), (x, self.maph), 1)
+
+        self.map.blit(cartesian_plane, (0, 0))
                 
         
